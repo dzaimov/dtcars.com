@@ -1,5 +1,6 @@
 package com.dtcars.users;
 
+import com.dtcars.ads.Ad;
 import com.dtcars.exceptions.InvalidEmailException;
 import com.dtcars.exceptions.InvalidPasswordException;
 import com.dtcars.exceptions.InvalidUserException;
@@ -28,6 +29,24 @@ public class Admin extends User implements IAdmin {
 	public User findUser(int userId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addNewAd(Ad ad) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void renewAd(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aproveAd(long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

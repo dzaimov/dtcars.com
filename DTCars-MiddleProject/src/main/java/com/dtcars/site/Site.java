@@ -1,6 +1,8 @@
 package com.dtcars.site;
 
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -23,6 +25,8 @@ public class Site {
 	private static Scanner scan = new Scanner(System.in);
 	private static Set<User> users = new HashSet<User>();
 	private static Set<Ad> ads = new HashSet<Ad>();
+	private static Map<String, Set<String>> techFeatures;
+	private static int counterOfAds;
 
 	public static void main(String[] args) {
 		menuLoop: while (true) {
@@ -164,4 +168,50 @@ public class Site {
 
 		throw new NoSuchUser("No such user with this email: " + email);
 	}
+	
+	private void search(String typeOfAd, Set<String> techFeatures) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private void display5AdsByCriteria(String criteria) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private void addNewAd(Ad ad, String email) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private void sortDealersByCriteria(String criteria) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private void searchDealer(String name) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private void searchDealerByCriteria(String criteria) {
+		// TODO Auto-generated method stub
+
+	}
+		
+	private void showNotification(long id, String email) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public static Ad getAdByID(long id) {
+		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
+			Ad ad = iterator.next();
+			if (ad.getAdID() == id) {
+				return ad;
+			}
+		}
+		return null;
+	}
+	
 }
