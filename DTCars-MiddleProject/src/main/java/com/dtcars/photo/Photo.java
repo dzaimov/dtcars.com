@@ -6,4 +6,9 @@ public class Photo {
 	private String path;
 	private long photoID;
 
+	public Photo(String path) {
+		super();
+		this.path = path; // Validation ???
+	}
+
 }
