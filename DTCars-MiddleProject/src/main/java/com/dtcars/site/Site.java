@@ -14,6 +14,7 @@ import com.dtcars.exceptions.InvalidPhoneNumberException;
 import com.dtcars.exceptions.InvalidUserException;
 import com.dtcars.exceptions.NoAdminsException;
 import com.dtcars.exceptions.NoSuchUser;
+import com.dtcars.repository.JDBCRepository;
 import com.dtcars.users.Admin;
 import com.dtcars.users.IAdmin;
 import com.dtcars.users.PrivateUser;
@@ -22,8 +23,9 @@ import com.dtcars.users.User;
 public class Site {
 	private static final String ADMINISTRATOR_CODE = "admin123";
 
+	private static JDBCRepository repo = new JDBCRepository();
 	private static Scanner scan = new Scanner(System.in);
-	private static Set<User> users = new HashSet<User>();
+	public static Set<User> users = new HashSet<User>();
 	private static Set<Ad> ads = new HashSet<Ad>();
 	private static Map<String, Set<String>> techFeatures;
 	private static int counterOfAds;
@@ -34,7 +36,7 @@ public class Site {
 			switch (scan.nextLine()) {
 			case "1":
 				System.out.println("Under construction :)");
-				break menuLoop;
+				break;
 
 			case "2":
 				try {
@@ -42,11 +44,11 @@ public class Site {
 				} catch (NoSuchUser e) {
 					System.err.println(e.getMessage());
 				}
-				break menuLoop;
+				break;
 
 			case "3":
 				registerUser();
-				break menuLoop;
+				break;
 
 			default:
 				System.err.println("Incorrect choice! Please try again!");
@@ -160,6 +162,11 @@ public class Site {
 		System.out.println("Please enter your password: ");
 		String password = scan.nextLine();
 
+		return getUser(email, password);
+
+	}
+
+	private static User getUser(String email, String password) throws NoSuchUser {
 		for (User user : users) {
 			if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
 				return user;
@@ -168,42 +175,42 @@ public class Site {
 
 		throw new NoSuchUser("No such user with this email: " + email);
 	}
-	
+
 	private void search(String typeOfAd, Set<String> techFeatures) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	private void display5AdsByCriteria(String criteria) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	private void addNewAd(Ad ad, String email) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	private void sortDealersByCriteria(String criteria) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	private void searchDealer(String name) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	private void searchDealerByCriteria(String criteria) {
 		// TODO Auto-generated method stub
 
 	}
-		
+
 	private void showNotification(long id, String email) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public static Ad getAdByID(long id) {
 		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
 			Ad ad = iterator.next();
@@ -213,5 +220,5 @@ public class Site {
 		}
 		return null;
 	}
-	
+
 }
