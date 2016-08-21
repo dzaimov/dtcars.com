@@ -16,9 +16,9 @@ public class MotorVehicleAd extends Ad {
 	private int mileage;
 	
 	public MotorVehicleAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category, 
+			long userID, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category, 
 			int mileage) throws AdException {
-		super(price, color, techFeatures, photos, additionalInfo);
+		super(price, color, techFeatures, photos, additionalInfo, userID);
 		this.yearOfManufacture = yearOfManufacture;
 		this.typeOfEngineByFuel = typeOfEngineByFuel;
 		if (power > 0) {

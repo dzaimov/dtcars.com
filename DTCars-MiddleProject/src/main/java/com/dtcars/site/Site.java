@@ -7,13 +7,16 @@ import java.util.Scanner;
 import java.util.Set;
 
 import com.dtcars.ads.Ad;
+import com.dtcars.exceptions.AdException;
 import com.dtcars.exceptions.InvalidEmailException;
+import com.dtcars.exceptions.InvalidLocationException;
 import com.dtcars.exceptions.InvalidNameException;
 import com.dtcars.exceptions.InvalidPasswordException;
 import com.dtcars.exceptions.InvalidPhoneNumberException;
 import com.dtcars.exceptions.InvalidUserException;
 import com.dtcars.exceptions.NoAdminsException;
 import com.dtcars.exceptions.NoSuchUser;
+import com.dtcars.photo.Photo;
 import com.dtcars.users.Admin;
 import com.dtcars.users.IAdmin;
 import com.dtcars.users.PrivateUser;
@@ -137,7 +140,7 @@ public class Site {
 					System.err.println(e.getMessage());
 				}
 			} catch (InvalidEmailException | InvalidPasswordException | InvalidNameException
-					| InvalidPhoneNumberException e) {
+					| InvalidPhoneNumberException | InvalidLocationException e) {
 				System.err.println(e.getMessage() + " Please try again!");
 			}
 		}
@@ -168,42 +171,58 @@ public class Site {
 
 		throw new NoSuchUser("No such user with this email: " + email);
 	}
+
+	public static void addNewAd(Ad ad) {
+		ads.add(ad);
+	}
+
+	public static void deleteAdByID(long id) {
+		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
+			if (iterator.next().getAdID() == id) {
+				iterator.remove();
+			}
+		}
+	}
+
+	public static void editAd(long id, int price, Set<Photo> photos, String additionalInfo) throws AdException {
+		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
+			Ad ad = iterator.next();
+			if (iterator.next().getAdID() == id) {
+				ad.editAd(price, photos, additionalInfo);
+			}
+		}
+	}
 	
-	private void search(String typeOfAd, Set<String> techFeatures) {
+	public static void search(String typeOfAd, Set<String> techFeatures) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	private void display5AdsByCriteria(String criteria) {
+
+	public static void display5AdsByCriteria(String criteria) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	private void addNewAd(Ad ad, String email) {
+
+	public static void sortDealersByCriteria(String criteria) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	private void sortDealersByCriteria(String criteria) {
+
+	public static void searchDealer(String name) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	private void searchDealer(String name) {
+
+	public static void searchDealerByCriteria(String criteria) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	private void searchDealerByCriteria(String criteria) {
+
+	public static void showNotification(long id, String email) {
 		// TODO Auto-generated method stub
 
 	}
-		
-	private void showNotification(long id, String email) {
-		// TODO Auto-generated method stub
 
-	}
-	
 	public static Ad getAdByID(long id) {
 		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
 			Ad ad = iterator.next();
@@ -213,5 +232,5 @@ public class Site {
 		}
 		return null;
 	}
-	
+
 }

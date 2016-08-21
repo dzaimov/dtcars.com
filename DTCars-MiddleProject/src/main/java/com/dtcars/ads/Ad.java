@@ -8,7 +8,7 @@ import com.dtcars.photo.Photo;
 
 public abstract class Ad {
 
-	public static long id = 0;
+	public static long id = 1;
 	private int price;
 	private String color;
 	private Set<String> techFeatures;
@@ -18,21 +18,19 @@ public abstract class Ad {
 	private int viewCounter;
 	private int watchCounter;
 	private long adID;
+	private long user;
 
-	public Ad(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo)
-			throws AdException {
+	public Ad(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo, 
+			long user) throws AdException {
 		super();
-		if (price > 0) {
-			this.price = price;
-		} else {
-			throw new AdException("Incorrect price!");
-		}
+		setPrice(price);
 		this.color = color;
 		this.techFeatures = techFeatures;
 		this.photos = photos;
 		this.datePublished = LocalDateTime.now();
 		this.additionalInfo = additionalInfo;
 		this.adID = ++id;
+		this.user = user;
 	}
 
 	public long getAdID() {
@@ -42,6 +40,12 @@ public abstract class Ad {
 	public void update() {
 		this.datePublished = LocalDateTime.now();
 	}
+	
+	public void editAd(int price, Set<Photo>photos, String additionalInfo) throws AdException {
+		setPrice(price);
+		this.photos = photos;
+		this.additionalInfo = additionalInfo;
+	}
 
 	private void viewAd() {
 		this.viewCounter++;
@@ -49,6 +53,14 @@ public abstract class Ad {
 
 	private void watchAd() {
 		this.watchCounter++;
+	}
+
+	private void setPrice(int price) throws AdException {
+		if (price > 0) {
+			this.price = price;
+		} else {
+			throw new AdException("Incorrect price!");
+		}
 	}
 
 }

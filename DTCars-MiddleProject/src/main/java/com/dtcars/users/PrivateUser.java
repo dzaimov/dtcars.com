@@ -5,7 +5,14 @@ import java.util.List;
 import java.util.Set;
 
 import com.dtcars.ads.Ad;
+import com.dtcars.ads.BikeAd;
+import com.dtcars.ads.BusAd;
+import com.dtcars.ads.CarAd;
+import com.dtcars.ads.MotoAd;
+import com.dtcars.ads.TruckAd;
+import com.dtcars.exceptions.AdException;
 import com.dtcars.exceptions.InvalidEmailException;
+import com.dtcars.exceptions.InvalidLocationException;
 import com.dtcars.exceptions.InvalidNameException;
 import com.dtcars.exceptions.InvalidPasswordException;
 import com.dtcars.exceptions.InvalidPhoneNumberException;
@@ -13,39 +20,95 @@ import com.dtcars.photo.Photo;
 import com.dtcars.site.Site;
 import com.dtcars.validations.IValidator;
 import com.dtcars.validations.NameValidator;
+import com.dtcars.validations.PasswordsValidator;
 import com.dtcars.validations.PhoneNumberValidator;
 
-public class PrivateUser extends User implements IPrivateUser{
+public class PrivateUser extends User implements IPrivateUser {
 	private String name;
 	private String phoneNumber;
 	private String location;
-	private List<Ad> ads;
+	private List<Long> ads;
 
 	public PrivateUser(String email, String password, String name, String phoneNumber, String location)
-			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, InvalidPhoneNumberException {
+			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, 
+			InvalidPhoneNumberException, InvalidLocationException {
 		super(email, password);
-
-		if (NameValidator.isValidName(name)) {
-			this.name = name;
-		}
-
-		if (PhoneNumberValidator.isValidPhoneNumber(phoneNumber)) {
-			this.phoneNumber = phoneNumber;
-		}
-
-		if (IValidator.isValidString(location)) {
-			this.location = location;
-		} else {
-			throw new IllegalArgumentException("Incorrect location!");
-		}
-
-		this.ads = new ArrayList<Ad>();
+		changeName(name);
+		changePhoneNumber(phoneNumber);
+		changeLocation(location);
+		this.ads = new ArrayList<Long>();
 	}
 
 	@Override
-	public void addNewAd(Ad ad) {
-		// TODO Auto-generated method stub
-		
+	public void addNewCarAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
+			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category,
+			int mileage) throws AdException {
+		if (this.ads.size() < 3) {
+			CarAd ad = new CarAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
+					typeOfEngineByFuel, power, transmission, category, mileage);
+			Site.addNewAd(ad);
+			this.ads.add(ad.getAdID());
+		} else {
+			throw new AdException("You have reach your ads limit!");
+		}
+	}
+
+	@Override
+	public void addNewBusAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
+			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category,
+			int mileage, byte numberOfSeats, int loadKg, byte numberOfAxles) throws AdException {
+		if (this.ads.size() < 3) {
+			BusAd ad = new BusAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
+					typeOfEngineByFuel, power, transmission, category, mileage, numberOfSeats, loadKg, numberOfAxles);
+			Site.addNewAd(ad);
+			this.ads.add(ad.getAdID());
+		} else {
+			throw new AdException("You have reach your ads limit!");
+		}
+	}
+
+	@Override
+	public void addNewTruckAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
+			String additionalInfo, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission,
+			String category, int mileage, byte numberOfSeats, int loadKg) throws AdException {
+		if (this.ads.size() < 3) {
+			TruckAd ad = new TruckAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
+					typeOfEngineByFuel, power, transmission, category, mileage, numberOfSeats, loadKg);
+			Site.addNewAd(ad);
+			this.ads.add(ad.getAdID());
+		} else {
+			throw new AdException("You have reach your ads limit!");
+		}
+	}
+
+	@Override
+	public void addNewMotoAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
+			String additionalInfo, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission,
+			String category, int mileage, short engineCapacity, String engineType, String coolingType)
+			throws AdException {
+		if (this.ads.size() < 3) {
+			MotoAd ad = new MotoAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
+					typeOfEngineByFuel, power, transmission, category, mileage, engineCapacity, engineType,
+					coolingType);
+			Site.addNewAd(ad);
+			this.ads.add(ad.getAdID());
+		} else {
+			throw new AdException("You have reach your ads limit!");
+		}
+	}
+
+	@Override
+	public void addNewBikeAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
+			String additionalInfo, String brand, String type, byte sizeInch, String frame, byte numberOfGears)
+			throws AdException {
+		if (this.ads.size() < 3) {
+			BikeAd ad = new BikeAd(price, color, techFeatures, photos, additionalInfo, this.getId(), brand, type, sizeInch, frame,
+					numberOfGears);
+			Site.addNewAd(ad);
+			this.ads.add(ad.getAdID());
+		} else {
+			throw new AdException("You have reach your ads limit!");
+		}
 	}
 
 	@Override
@@ -57,39 +120,41 @@ public class PrivateUser extends User implements IPrivateUser{
 	}
 
 	@Override
-	public void editAd(long id, int price, Set<Photo> photos, String additionalInfo) {
-		// TODO Auto-generated method stub
-		
+	public void editAd(long id, int price, Set<Photo> photos, String additionalInfo) throws AdException {
+		Site.editAd(id, price, photos, additionalInfo);
 	}
 
 	@Override
 	public void deleteAd(long id) {
-		// TODO Auto-generated method stub
-		
+		for (int index = 0; index < this.ads.size(); index++) {
+			if (this.ads.get(index) == id) {
+				this.ads.remove(index);
+				Site.deleteAdByID(id);
+			}
+		}
 	}
 
 	@Override
-	public void changePassword(String password) {
-		// TODO Auto-generated method stub
-		
+	public void changeName(String name) throws InvalidNameException {
+		if (NameValidator.isValidName(name)) {
+			this.name = name;
+		}
 	}
 
 	@Override
-	public void changeName(String name) {
-		// TODO Auto-generated method stub
-		
+	public void changeLocation(String location) throws InvalidLocationException {
+		if (IValidator.isValidString(location)) {
+			this.location = location;
+		} else {
+			throw new InvalidLocationException("Incorrect location!");
+		}
 	}
 
 	@Override
-	public void changeLocation(String location) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void changePhoneNumber(String phoneNumber) {
-		// TODO Auto-generated method stub
-		
+	public void changePhoneNumber(String phoneNumber) throws InvalidPhoneNumberException {
+		if (PhoneNumberValidator.isValidPhoneNumber(phoneNumber)) {
+			this.phoneNumber = phoneNumber;
+		}
 	}
 
 }

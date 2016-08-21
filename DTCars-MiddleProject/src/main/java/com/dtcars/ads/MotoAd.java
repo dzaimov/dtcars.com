@@ -13,10 +13,10 @@ public class MotoAd extends MotorVehicleAd {
 	private String coolingType;
 
 	public MotoAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, 
+			long userID, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, 
 			String category, int mileage, short engineCapacity, String engineType, String coolingType)
 					throws AdException {
-		super(price, color, techFeatures, photos, additionalInfo, yearOfManufacture, typeOfEngineByFuel, power, 
+		super(price, color, techFeatures, photos, additionalInfo, userID, yearOfManufacture, typeOfEngineByFuel, power, 
 				transmission, category, mileage);
 		if (engineCapacity > 0) {
 			this.engineCapacity = engineCapacity;

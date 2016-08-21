@@ -17,9 +17,7 @@ public abstract class User {
 			this.email = email;
 		}
 
-		if (PasswordsValidator.isValidPassword(password)) {
-			this.password = password;
-		}
+		changePassword(password);
 
 		this.id = ++countOfUsers;
 	}
@@ -34,6 +32,12 @@ public abstract class User {
 
 	public String getPassword() {
 		return password;
+	}
+	
+	public void changePassword(String password) throws InvalidPasswordException {
+		if (PasswordsValidator.isValidPassword(password)) {
+			this.password = password;
+		}
 	}
 
 	@Override

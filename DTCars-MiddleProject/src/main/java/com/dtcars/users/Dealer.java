@@ -1,6 +1,7 @@
 package com.dtcars.users;
 
 import com.dtcars.exceptions.InvalidEmailException;
+import com.dtcars.exceptions.InvalidLocationException;
 import com.dtcars.exceptions.InvalidNameException;
 import com.dtcars.exceptions.InvalidPasswordException;
 import com.dtcars.exceptions.InvalidPhoneNumberException;
@@ -13,7 +14,8 @@ public class Dealer extends PrivateUser {
 	private Photo logo;
 	
 	public Dealer(String email, String password, String name, String phoneNumber, String location)
-			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, InvalidPhoneNumberException {
+			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, 
+			InvalidPhoneNumberException, InvalidLocationException {
 		super(email, password, name, phoneNumber, location);
 		// TODO Auto-generated constructor stub
 	}

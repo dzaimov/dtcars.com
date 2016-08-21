@@ -15,9 +15,9 @@ public class BikeAd extends Ad {
 	private byte numberOfGears;
 	
 	public BikeAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			String brand, String type, byte sizeInch, String frame, byte numberOfGears) 
+			long userID, String brand, String type, byte sizeInch, String frame, byte numberOfGears) 
 			throws AdException {
-		super(price, color, techFeatures, photos, additionalInfo);
+		super(price, color, techFeatures, photos, additionalInfo, userID);
 		if (brand != null && !brand.trim().isEmpty()) {
 			this.brand = brand;
 		} else {
