@@ -97,6 +97,7 @@ public class Site {
 			try {
 				Admin admin = new Admin(email, password);
 				users.add(admin);
+				repo.addUser(admin);
 				System.out.println("Successful registration admin with email: " + email);
 				break;
 			} catch (InvalidEmailException | InvalidPasswordException e) {
@@ -129,6 +130,7 @@ public class Site {
 				try {
 					if (getAdmin().checkUser(user)) {
 						users.add(user);
+						repo.addUser(user);
 						System.out.println("Successful registration user with email: " + email);
 						break;
 					}

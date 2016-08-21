@@ -34,19 +34,22 @@ public class JDBCRepository implements IRepository {
 	@Override
 	public void addUser(User user) {
 		String sql = "insert into users " + 
-					"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					"values (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
 			stmt.setInt(1, user.getId());
 			stmt.setString(2, user.getEmail());
 			stmt.setString(3, user.getPassword());
-			
+			stmt.setString(4, user.getName());
+			stmt.setString(5, user.getPhoneNumber());
+			stmt.setString(6, user.getLocation());
+			stmt.setString(7, user.getClass().getSimpleName());
 
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
