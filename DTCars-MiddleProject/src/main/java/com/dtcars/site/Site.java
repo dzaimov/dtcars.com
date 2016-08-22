@@ -16,11 +16,8 @@ import com.dtcars.exceptions.InvalidPhoneNumberException;
 import com.dtcars.exceptions.InvalidUserException;
 import com.dtcars.exceptions.NoAdminsException;
 import com.dtcars.exceptions.NoSuchUser;
-<<<<<<< HEAD
 import com.dtcars.photo.Photo;
-=======
 import com.dtcars.repository.JDBCRepository;
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 import com.dtcars.users.Admin;
 import com.dtcars.users.IAdmin;
 import com.dtcars.users.PrivateUser;
@@ -183,12 +180,6 @@ public class Site {
 
 		throw new NoSuchUser("No such user with this email: " + email);
 	}
-<<<<<<< HEAD
-=======
-
-	private void search(String typeOfAd, Set<String> techFeatures) {
-		// TODO Auto-generated method stub
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 
 	public static void addNewAd(Ad ad) {
 		ads.add(ad);
@@ -210,58 +201,37 @@ public class Site {
 			}
 		}
 	}
-<<<<<<< HEAD
-	
+
 	public static void search(String typeOfAd, Set<String> techFeatures) {
-=======
+		
+	}
 
 	private void display5AdsByCriteria(String criteria) {
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
-<<<<<<< HEAD
-	public static void display5AdsByCriteria(String criteria) {
-=======
 	private void addNewAd(Ad ad, String email) {
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
-<<<<<<< HEAD
-	public static void sortDealersByCriteria(String criteria) {
-=======
 	private void sortDealersByCriteria(String criteria) {
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
-<<<<<<< HEAD
-	public static void searchDealer(String name) {
-=======
 	private void searchDealer(String name) {
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
-<<<<<<< HEAD
-	public static void searchDealerByCriteria(String criteria) {
-=======
 	private void searchDealerByCriteria(String criteria) {
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
-<<<<<<< HEAD
-	public static void showNotification(long id, String email) {
-=======
 	private void showNotification(long id, String email) {
->>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
