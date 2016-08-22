@@ -16,7 +16,11 @@ import com.dtcars.exceptions.InvalidPhoneNumberException;
 import com.dtcars.exceptions.InvalidUserException;
 import com.dtcars.exceptions.NoAdminsException;
 import com.dtcars.exceptions.NoSuchUser;
+<<<<<<< HEAD
 import com.dtcars.photo.Photo;
+=======
+import com.dtcars.repository.JDBCRepository;
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 import com.dtcars.users.Admin;
 import com.dtcars.users.IAdmin;
 import com.dtcars.users.PrivateUser;
@@ -25,8 +29,9 @@ import com.dtcars.users.User;
 public class Site {
 	private static final String ADMINISTRATOR_CODE = "admin123";
 
+	private static JDBCRepository repo = new JDBCRepository();
 	private static Scanner scan = new Scanner(System.in);
-	private static Set<User> users = new HashSet<User>();
+	public static Set<User> users = new HashSet<User>();
 	private static Set<Ad> ads = new HashSet<Ad>();
 	private static Map<String, Set<String>> techFeatures;
 	private static int counterOfAds;
@@ -37,7 +42,7 @@ public class Site {
 			switch (scan.nextLine()) {
 			case "1":
 				System.out.println("Under construction :)");
-				break menuLoop;
+				break;
 
 			case "2":
 				try {
@@ -45,11 +50,11 @@ public class Site {
 				} catch (NoSuchUser e) {
 					System.err.println(e.getMessage());
 				}
-				break menuLoop;
+				break;
 
 			case "3":
 				registerUser();
-				break menuLoop;
+				break;
 
 			default:
 				System.err.println("Incorrect choice! Please try again!");
@@ -98,6 +103,7 @@ public class Site {
 			try {
 				Admin admin = new Admin(email, password);
 				users.add(admin);
+				repo.addUser(admin);
 				System.out.println("Successful registration admin with email: " + email);
 				break;
 			} catch (InvalidEmailException | InvalidPasswordException e) {
@@ -130,6 +136,7 @@ public class Site {
 				try {
 					if (getAdmin().checkUser(user)) {
 						users.add(user);
+						repo.addUser(user);
 						System.out.println("Successful registration user with email: " + email);
 						break;
 					}
@@ -163,6 +170,11 @@ public class Site {
 		System.out.println("Please enter your password: ");
 		String password = scan.nextLine();
 
+		return getUser(email, password);
+
+	}
+
+	private static User getUser(String email, String password) throws NoSuchUser {
 		for (User user : users) {
 			if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
 				return user;
@@ -171,6 +183,12 @@ public class Site {
 
 		throw new NoSuchUser("No such user with this email: " + email);
 	}
+<<<<<<< HEAD
+=======
+
+	private void search(String typeOfAd, Set<String> techFeatures) {
+		// TODO Auto-generated method stub
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 
 	public static void addNewAd(Ad ad) {
 		ads.add(ad);
@@ -192,33 +210,58 @@ public class Site {
 			}
 		}
 	}
+<<<<<<< HEAD
 	
 	public static void search(String typeOfAd, Set<String> techFeatures) {
+=======
+
+	private void display5AdsByCriteria(String criteria) {
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
+<<<<<<< HEAD
 	public static void display5AdsByCriteria(String criteria) {
+=======
+	private void addNewAd(Ad ad, String email) {
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
+<<<<<<< HEAD
 	public static void sortDealersByCriteria(String criteria) {
+=======
+	private void sortDealersByCriteria(String criteria) {
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
+<<<<<<< HEAD
 	public static void searchDealer(String name) {
+=======
+	private void searchDealer(String name) {
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
+<<<<<<< HEAD
 	public static void searchDealerByCriteria(String criteria) {
+=======
+	private void searchDealerByCriteria(String criteria) {
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}
 
+<<<<<<< HEAD
 	public static void showNotification(long id, String email) {
+=======
+	private void showNotification(long id, String email) {
+>>>>>>> 33ffeea4120a9ded6a35edb22440f1882f0551fe
 		// TODO Auto-generated method stub
 
 	}

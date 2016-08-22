@@ -65,5 +65,15 @@ public abstract class User {
 		return true;
 	}
 
-	
+	public String getName() {
+		return null;
+	}
+
+	public String getPhoneNumber() {
+		return null;
+	}
+
+	public String getLocation() {
+		return null;
+	}
 }

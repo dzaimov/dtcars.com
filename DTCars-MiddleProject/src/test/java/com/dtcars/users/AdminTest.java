@@ -9,13 +9,13 @@ public class AdminTest {
 
 	@Test (expected =  InvalidEmailException.class)
 	public void createAdminWithIncorrectEmailTest() throws InvalidEmailException, InvalidPasswordException {
-		Admin admin = new Admin("asasd", "Admin123");
+		new Admin("asasd", "Admin123");
 	}
 	
 
 	@Test (expected =  InvalidPasswordException.class)
 	public void createAdminWithIncorrectPasswordTest() throws InvalidEmailException, InvalidPasswordException {
-		Admin admin = new Admin("admin@abv.bg", "bla-bla");
+		new Admin("admin@abv.bg", "bla-bla");
 	}
 
 }

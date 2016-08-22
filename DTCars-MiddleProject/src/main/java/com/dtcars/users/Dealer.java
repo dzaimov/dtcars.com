@@ -11,7 +11,7 @@ public class Dealer extends PrivateUser {
 
 	private String companyName;
 	private String address;
-	private Photo logo;
+//	private Photo logo;
 	
 	public Dealer(String email, String password, String name, String phoneNumber, String location)
 			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, 

@@ -157,4 +157,15 @@ public class PrivateUser extends User implements IPrivateUser {
 		}
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getLocation() {
+		return location;
+	}
 }
