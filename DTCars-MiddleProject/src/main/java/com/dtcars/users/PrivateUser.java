@@ -24,6 +24,7 @@ import com.dtcars.validations.PasswordsValidator;
 import com.dtcars.validations.PhoneNumberValidator;
 
 public class PrivateUser extends User implements IPrivateUser {
+	private static final int MAX_NUMBER_OF_PRIVATE_USER_ADS = 3;
 	private String name;
 	private String phoneNumber;
 	private String location;
@@ -43,7 +44,7 @@ public class PrivateUser extends User implements IPrivateUser {
 	public void addNewCarAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
 			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category,
 			int mileage) throws AdException {
-		if (this.ads.size() < 3) {
+		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
 			CarAd ad = new CarAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
 					typeOfEngineByFuel, power, transmission, category, mileage);
 			Site.addNewAd(ad);
@@ -57,7 +58,7 @@ public class PrivateUser extends User implements IPrivateUser {
 	public void addNewBusAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
 			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category,
 			int mileage, byte numberOfSeats, int loadKg, byte numberOfAxles) throws AdException {
-		if (this.ads.size() < 3) {
+		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
 			BusAd ad = new BusAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
 					typeOfEngineByFuel, power, transmission, category, mileage, numberOfSeats, loadKg, numberOfAxles);
 			Site.addNewAd(ad);
@@ -71,7 +72,7 @@ public class PrivateUser extends User implements IPrivateUser {
 	public void addNewTruckAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
 			String additionalInfo, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission,
 			String category, int mileage, byte numberOfSeats, int loadKg) throws AdException {
-		if (this.ads.size() < 3) {
+		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
 			TruckAd ad = new TruckAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
 					typeOfEngineByFuel, power, transmission, category, mileage, numberOfSeats, loadKg);
 			Site.addNewAd(ad);
@@ -86,7 +87,7 @@ public class PrivateUser extends User implements IPrivateUser {
 			String additionalInfo, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission,
 			String category, int mileage, short engineCapacity, String engineType, String coolingType)
 			throws AdException {
-		if (this.ads.size() < 3) {
+		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
 			MotoAd ad = new MotoAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
 					typeOfEngineByFuel, power, transmission, category, mileage, engineCapacity, engineType,
 					coolingType);
@@ -101,7 +102,7 @@ public class PrivateUser extends User implements IPrivateUser {
 	public void addNewBikeAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
 			String additionalInfo, String brand, String type, byte sizeInch, String frame, byte numberOfGears)
 			throws AdException {
-		if (this.ads.size() < 3) {
+		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
 			BikeAd ad = new BikeAd(price, color, techFeatures, photos, additionalInfo, this.getId(), brand, type, sizeInch, frame,
 					numberOfGears);
 			Site.addNewAd(ad);
@@ -112,7 +113,7 @@ public class PrivateUser extends User implements IPrivateUser {
 	}
 
 	@Override
-	public void renewAd(long id) {
+	public void renewAd(long id) throws AdException {
 		Ad ad = Site.getAdByID(id);
 		if (ad != null) {
 			ad.update();

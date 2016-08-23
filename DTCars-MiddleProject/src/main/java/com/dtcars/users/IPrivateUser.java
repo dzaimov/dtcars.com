@@ -30,7 +30,7 @@ public interface IPrivateUser {
 	public void addNewBikeAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
 			String brand, String type, byte sizeInch, String frame, byte numberOfGears) throws AdException;
 		
-	public void renewAd(long id);
+	public void renewAd(long id) throws AdException;
 	
 	public void editAd(long id, int price, Set<Photo> photos, String additionalInfo) throws AdException;
 	

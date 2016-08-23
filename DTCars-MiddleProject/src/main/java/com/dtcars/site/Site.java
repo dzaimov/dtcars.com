@@ -28,7 +28,7 @@ public class Site {
 
 	private static JDBCRepository repo = new JDBCRepository();
 	private static Scanner scan = new Scanner(System.in);
-	public static Set<User> users = new HashSet<User>();
+	private static Set<User> users = new HashSet<User>();
 	private static Set<Ad> ads = new HashSet<Ad>();
 	private static Map<String, Set<String>> techFeatures;
 	private static int counterOfAds;
@@ -131,7 +131,8 @@ public class Site {
 			try {
 				PrivateUser user = new PrivateUser(email, password, name, phoneNumber, address);
 				try {
-					if (getAdmin().checkUser(user)) {
+					Admin admin = (Admin) getAdmin(); 
+					if (checkUser(user, admin.getId())) {
 						users.add(user);
 						repo.addUser(user);
 						System.out.println("Successful registration user with email: " + email);
@@ -148,6 +149,17 @@ public class Site {
 				System.err.println(e.getMessage() + " Please try again!");
 			}
 		}
+	}
+	
+	public static boolean checkUser(User user, int userID) throws InvalidUserException, NoAdminsException {
+		if (user != null) {
+			for (User userToCheck : Site.users) {
+				if (!userToCheck.getEmail().equals(user.getEmail())) {
+					return true;
+				}
+			}
+		}
+		throw new InvalidUserException("Admin: " + ((Admin)getAdmin()).getEmail() + "-Incorrect user!");
 	}
 
 	private static IAdmin getAdmin() throws NoAdminsException {
@@ -180,6 +192,25 @@ public class Site {
 
 		throw new NoSuchUser("No such user with this email: " + email);
 	}
+	
+	public static void deleteUserByID(int id) {
+		for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
+			if (iterator.next().getId() == id) {
+				iterator.remove();
+				return;
+			}
+		}
+	}
+	
+	public static User getUserByID(int id) throws InvalidUserException {
+		for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
+			User user = iterator.next();
+			if (user.getId() == id) {
+				return user;
+			}
+		}
+		throw new InvalidUserException("User not found!");
+	}
 
 	public static void addNewAd(Ad ad) {
 		ads.add(ad);
@@ -189,6 +220,7 @@ public class Site {
 		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
 			if (iterator.next().getAdID() == id) {
 				iterator.remove();
+				return;
 			}
 		}
 	}
@@ -196,10 +228,22 @@ public class Site {
 	public static void editAd(long id, int price, Set<Photo> photos, String additionalInfo) throws AdException {
 		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
 			Ad ad = iterator.next();
-			if (iterator.next().getAdID() == id) {
+			if (ad.getAdID() == id) {
 				ad.editAd(price, photos, additionalInfo);
+				return;
 			}
 		}
+	}
+	
+	public static void approveAd(Ad ad) {
+		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
+			Ad adForApproval = iterator.next();
+			if (adForApproval.getAdID() == ad.getAdID()) {
+				adForApproval = ad;
+				return;
+			}
+		}
+		ads.add(ad);
 	}
 
 	public static void search(String typeOfAd, Set<String> techFeatures) {
@@ -236,14 +280,14 @@ public class Site {
 
 	}
 
-	public static Ad getAdByID(long id) {
+	public static Ad getAdByID(long id) throws AdException {
 		for (Iterator<Ad> iterator = ads.iterator(); iterator.hasNext();) {
 			Ad ad = iterator.next();
 			if (ad.getAdID() == id) {
 				return ad;
 			}
 		}
-		return null;
+		throw new AdException("Ad not found!");
 	}
 
 }

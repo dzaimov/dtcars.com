@@ -1,20 +1,20 @@
 package com.dtcars.users;
 
+import java.util.Set;
+
 import com.dtcars.ads.Ad;
+import com.dtcars.exceptions.AdException;
 import com.dtcars.exceptions.InvalidUserException;
+import com.dtcars.photo.Photo;
 
 public interface IAdmin {
 
-	boolean checkUser(User user) throws InvalidUserException;
-
 	void removeUser(int userId);
 
-	User findUser(int userId);
+	User findUser(int userId) throws InvalidUserException;
 	
-	public void addNewAd(Ad ad);
+	public void approveAd(Ad ad);
 	
-	public void renewAd(long id);
-
-	public void aproveAd(long id);
-
+	public Ad showNextAdAwaitingApproval() throws AdException;
+		
 }
