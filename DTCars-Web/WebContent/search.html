@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DTCARS.com - Сайт за автомобили</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+	<ul class="top-menu">
+		<li><a href="car.html">Автомобили</a></li>
+		<li><a href="bus.html">Бусове</a></li>
+		<li><a href="truck.html">Камиони</a></li>
+		<li><a href="moto.html">Мотоциклети</a></li>
+		<li><a href="bike.html">Велосипеди</a></li>
+	</ul>
+	<hr>
+	<h1>
+		<a class="logo-text" href="index.html"><img alt="logo"
+			src="car-logo.png"> DTCARS.com</a>
+	</h1>
+	<hr>
+	<ul>
+		<li><a href="index.html">Начало</a></li>
+		<li><a href="publish.html">Публикуване</a></li>
+		<li><a href="search.html">Търсене</a></li>
+		<li><a href="dealerships.html">Автокъщи</a></li>
+		<li><a href="my_profile.html">Моят профил</a></li>
+	</ul>
+	<hr>
+	<div>
+		<form action="server.com" method="get">
+			<h4>Основна Категория</h4>
+			<select name="main-category">
+				<option value="car">Автомобили</option>
+				<option value="bus">Бусове</option>
+				<option value="truck">Камиони</option>
+				<option value="moto">Мотоциклети</option>
+				<option value="bike">Велосипеди</option>
+			</select>
+		</form>
+		<form action="server.com" method="get">
+			<h4>Марка</h4>
+			<select name="brand">
+				<option value="audi">Audi</option>
+				<option value="bmw">BMW</option>
+				<option value="fiat">Fiat</option>
+				<option value="mercedes">Mercedes</option>
+				<option value="opel">Opel</option>
+			</select>
+		</form>
+		<form action="server.com" method="get">
+			<h4>Модел</h4>
+			<select name="model">
+				<option value="a6">A6</option>
+				<option value="320">320</option>
+				<option value="stilo">Stilo</option>
+				<option value="sl63">SL63</option>
+				<option value="astra">Astra</option>
+			</select>
+		</form>
+		<form action="server.com" method="get">
+			<h4>Категория</h4>
+			<select name="category">
+				<option value="a6">Седан</option>
+				<option value="320">Хечбек</option>
+				<option value="stilo">Комби</option>
+				<option value="sl63">Кабрио</option>
+				<option value="astra">Джип</option>
+				<option value="sl63">Пикап</option>
+				<option value="astra">Ван</option>
+			</select>
+		</form>
+		<form action="server.com">
+			<p>
+				Цена: <input type="text" name="price" value=""> лв
+			</p>
+		</form>
+		<form action="server.com" method="get">
+			<h4>Година</h4>
+			<select class="quick_right" name="year">
+				<option value="2016">2016</option>
+				<option value="2015">2015</option>
+				<option value="2014">2014</option>
+				<option value="2013">2013</option>
+				<option value="2012">2012</option>
+			</select>
+		</form>
+	</div>
+	<div>
+		<form action="server.com" method="get">
+			<h4>Двигател</h4>
+			<select class="quick_left" name="engine">
+				<option value="gasoline">Бензинов</option>
+				<option value="diesel">Дизелов</option>
+				<option value="hybrid">Хибриден</option>
+				<option value="electric">Електрически</option>
+			</select>
+		</form>
+		<form action="server.com" method="get">
+			<h4>Скоростна кутия</h4>
+			<select class="quick_right" name="gearbox">
+				<option value="manual">Ръчна</option>
+				<option value="automatic">Автоматична</option>
+				<option value="semi-automatic">Полуавтоматична</option>
+			</select>
+		</form>
+	</div>
+</body>
+</html>
