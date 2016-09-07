@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>DTCARS.com - Сайт за автомобили</title>
-<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="stylesheet" href="css\style.css" type="text/css">
 </head>
 <body>
 	<ul class="top-menu">
@@ -15,8 +15,8 @@
 	</ul>
 	<hr>
 	<h1>
-		<a class="logo-text" href="index.html"><img alt="logo"
-			src="car-logo.png"> DTCARS.com</a>
+		<a class="css/logo-text" href="index.html"><img alt="logo"
+			src="img/car-logo.png"> DTCARS.com</a>
 	</h1>
 	<hr>
 	<ul>
@@ -27,8 +27,8 @@
 		<li><a href="my_profile.html">Моят профил</a></li>
 	</ul>
 	<hr>
-	<div>
-		<form action="server.com" method="get">
+	<div class="search_main">
+		<form class="search_main_top" action="server.com" method="get">
 			<h4>Основна Категория</h4>
 			<select name="main-category">
 				<option value="car">Автомобили</option>
@@ -38,7 +38,7 @@
 				<option value="bike">Велосипеди</option>
 			</select>
 		</form>
-		<form action="server.com" method="get">
+		<form class="search_main_top" action="server.com" method="get">
 			<h4>Марка</h4>
 			<select name="brand">
 				<option value="audi">Audi</option>
@@ -48,7 +48,7 @@
 				<option value="opel">Opel</option>
 			</select>
 		</form>
-		<form action="server.com" method="get">
+		<form class="search_main_top" action="server.com" method="get">
 			<h4>Модел</h4>
 			<select name="model">
 				<option value="a6">A6</option>
@@ -58,7 +58,7 @@
 				<option value="astra">Astra</option>
 			</select>
 		</form>
-		<form action="server.com" method="get">
+		<form class="search_main_top" action="server.com" method="get">
 			<h4>Категория</h4>
 			<select name="category">
 				<option value="a6">Седан</option>
@@ -70,14 +70,14 @@
 				<option value="astra">Ван</option>
 			</select>
 		</form>
-		<form action="server.com">
-			<p>
-				Цена: <input type="text" name="price" value=""> лв
-			</p>
+		<br>
+		<form class="search_main_bottom" action="server.com">
+			<h4>Цена (лв)</h4>
+			<input type="text" name="price" value="">
 		</form>
-		<form action="server.com" method="get">
+		<form class="search_main_bottom" action="server.com" method="get">
 			<h4>Година</h4>
-			<select class="quick_right" name="year">
+			<select name="year">
 				<option value="2016">2016</option>
 				<option value="2015">2015</option>
 				<option value="2014">2014</option>
@@ -85,20 +85,18 @@
 				<option value="2012">2012</option>
 			</select>
 		</form>
-	</div>
-	<div>
-		<form action="server.com" method="get">
+		<form class="search_main_bottom" action="server.com" method="get">
 			<h4>Двигател</h4>
-			<select class="quick_left" name="engine">
+			<select name="engine">
 				<option value="gasoline">Бензинов</option>
 				<option value="diesel">Дизелов</option>
 				<option value="hybrid">Хибриден</option>
 				<option value="electric">Електрически</option>
 			</select>
 		</form>
-		<form action="server.com" method="get">
+		<form class="search_main_bottom" action="server.com" method="get">
 			<h4>Скоростна кутия</h4>
-			<select class="quick_right" name="gearbox">
+			<select name="gearbox">
 				<option value="manual">Ръчна</option>
 				<option value="automatic">Автоматична</option>
 				<option value="semi-automatic">Полуавтоматична</option>

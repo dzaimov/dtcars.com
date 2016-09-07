@@ -18,7 +18,7 @@
 	<hr>
 	<h1>
 		<a class="logo-text" href="index.html"><img alt="logo"
-			src="img\car-logo.png"> DTCARS.com</a>
+			src="img/car-logo.png"> DTCARS.com</a>
 	</h1>
 	<hr>
 	<ul>
@@ -127,7 +127,7 @@
 				%>
 				<p>Грешен имейл или парола!</p>
 				<div id="registrationLoginButons">
-					<button
+					<button class="button_enter"
 						onclick="document.getElementById('login').style.display='block'"
 						style="width: auto;">Вход</button>
 					<div id="login" class="modal">
@@ -156,7 +156,7 @@
 							</div>
 						</form>
 					</div>
-					<button
+					<button class="button_reg"
 						onclick="document.getElementById('register').style.display='block'"
 						style="width: auto;">Регистрация</button>
 

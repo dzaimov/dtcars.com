@@ -2,7 +2,7 @@
 
 body {
 	background-color: #393F57;
-	background-image: url("road-l.jpg"), url("road-r.jpg");
+	background-image: url("../img/road-l.jpg"), url("../img/road-r.jpg");
 	background-position: left, right;
 	background-repeat: no-repeat, no-repeat;
 	background-size: contain, contain, contain;
@@ -16,7 +16,7 @@ ul {
 	text-align: center;
 	background-color: #66dded;
 	border-radius: 5px;
-	width: 920px;
+	width: 57%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -68,7 +68,7 @@ h2 {
 
 hr {
 	border: solid 1px maroon;
-	width: 920px;
+	width: 57%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -76,25 +76,25 @@ hr {
 .main {
 	display: inline-block;
 	border-left: double maroon;
-	padding-left: 20px;
-	margin-left: 300px;
+	padding-left: 1.33%;
+	margin-left: 19.95%;
 	border-right: double maroon;
-	padding-right: 20px;
-	margin-right: 300px;
-	padding-bottom: 20px;
+	padding-right: 1.33%;
+	margin-right: 19.95%;
+	padding-bottom: 1.33%;
 }
 
 .top-menu li {
 	font-size: 16px;
 }
 
-.quick_search {
+.quick_search, .search_main {
 	background-color: #66dded;
 	border: 2px solid maroon;
 	border-radius: 5px;
 	padding: 10px;
 	margin-right: 10px;
-	width: 407px;
+	width: 47%;
 	display: inline-block;
 }
 
@@ -105,7 +105,7 @@ hr {
 
 .menu_category {
 	display: inline-block;
-	width: 407px;
+	width: 402px;
 	text-align: left;
 	float: left;
 }
@@ -116,19 +116,19 @@ form {
 }
 
 .quick_left {
-	width: 201px;
+	width: 199px;
 	text-align: left;
 	float: left;
 }
 
 .quick_right {
-	width: 201px;
+	width: 199px;
 	text-align: left;
-	float: right;
+	float: left;
 }
 
 .price {
-	width: 196px;
+	width: 195px;
 	text-align: left;
 	float: left;
 }
@@ -248,10 +248,34 @@ button:hover, .button:hover {
 	width: 300px;
 }
 
-@CHARSET "UTF-8";
+.search_main_top, .search_main_bottom {
+	display: inline-block;
+	text-align: left;
+}
+
+.search_main {
+	width: 55.6%;
+	text-align: center;
+	margin-left: 21.4%;
+	margin-right: 21.4%;
+}
+
+.search_main_top select, .search_main_bottom select {
+	width: 170px;
+	margin: 10px;
+}
+
+.search_main_bottom input {
+	width: 166px;
+	margin: 10px;
+}
+
+.search_main_top h4, .search_main_bottom h4 {
+	margin-left: 10px;
+}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+.sign_form input[type=text], .sign_form input[type=password] {
 	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
@@ -261,7 +285,7 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
+.sign_form button {
 	background-color: #4CAF50;
 	color: white;
 	padding: 14px 20px;
@@ -271,13 +295,19 @@ button {
 	width: 100%;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-	width: auto;
-	padding: 10px 18px;
-	background-color: #f44336;
+.sign_form button:hover {
+	border: 2px solid maroon;
+	padding: 12px 18.5px 12.6px 18.5px;
 }
 
+.sign_form .button_enter, .sign_form .button_reg {
+	margin-top: 25%;
+}
+
+/* Extra styles for the cancel button */
+.sign_form .cancelbtn {
+	background-color: #f44336;
+}
 
 img.avatar {
 	width: 40%;
