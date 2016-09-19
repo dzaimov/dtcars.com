@@ -7,20 +7,20 @@
 </head>
 <body>
 	<ul class="top-menu">
-		<li><a href="car.html">Автомобили</a></li>
-		<li><a href="bus.html">Бусове</a></li>
-		<li><a href="truck.html">Камиони</a></li>
-		<li><a href="moto.html">Мотоциклети</a></li>
-		<li><a href="bike.html">Велосипеди</a></li>
+		<li><a href="index.html" class="selected">Автомобили</a></li>
+		<li><a href="index_bus.html">Бусове</a></li>
+		<li><a href="index_truck.html">Камиони</a></li>
+		<li><a href="index_moto.html">Мотоциклети</a></li>
+		<li><a href="index_bike.html">Велосипеди</a></li>
 	</ul>
 	<hr>
 	<h1>
-		<a class="logo-text" href="index.html"><img alt="logo"
-			src="img/car-logo.png"> DTCARS.com</a>
+		<a class="logo-text" href="indexwithregistration.jsp"><img alt="logo"
+			src="img/car-logo.png"> DTCARS<span class="dot_logo">.</span>com</a>
 	</h1>
 	<hr>
 	<ul>
-		<li><a href="index.html">Начало</a></li>
+		<li><a href="index.html" class="selected">Начало</a></li>
 		<li><a href="publish.html">Публикуване</a></li>
 		<li><a href="search.html">Търсене</a></li>
 		<li><a href="dealerships.html">Автокъщи</a></li>
@@ -33,7 +33,7 @@
 			<div>
 				<form action="server.com" method="get">
 					<h4>Основна Категория</h4>
-					<select class="menu_category" name="category">
+					<select class="menu_category" name="category" onchange="func(this)">
 						<option value="car">Автомобили</option>
 						<option value="bus">Бусове</option>
 						<option value="truck">Камиони</option>
@@ -44,6 +44,18 @@
 			</div>
 			<br>
 			<div>
+				<form id="bike_type" action="server.com" method="get">
+					<h4>Вид</h4>
+					<select class="quick_left" name="bike_type">
+						<option value="">Всички</option>
+						<option value="city">Градски</option>
+						<option value="track">Пистов</option>
+						<option value="mountain">Планински</option>
+						<option value="tricycle">Триколка</option>
+						<option value="hybrid">Хибрид</option>
+						<option value="road">Шосеен</option>
+					</select>
+				</form>
 				<form action="server.com" method="get">
 					<h4>Марка</h4>
 					<select class="quick_left" name="brand">
@@ -115,7 +127,7 @@
 						<option value="Други">Други</option>
 					</select>
 				</form>
-				<form action="server.com" method="get">
+				<form id="model" action="server.com" method="get">
 					<h4>Модел</h4>
 					<select class="quick_right" name="model">
 						<option value="">Всички</option>
@@ -127,7 +139,31 @@
 					<h4>Максимална цена</h4>
 					<input class="price" type="text" name="max_price">
 				</form>
-				<form action="server.com" method="get">
+				<form id="bike_gears" action="server.com" method="get">
+					<h4>Скорости</h4>
+					<select class="quick_right" name="bike_gears">
+						<option value="">Всички</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="12">12</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="18">18</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="24">24</option>
+						<option value=">24">>24</option>
+						<option value="1">без скорости</option>
+					</select>
+				</form>
+				<form id="year" action="server.com" method="get">
 					<h4>Година</h4>
 					<select class="quick_right" name="year">
 						<option value="2016">след 2016</option>
@@ -181,7 +217,7 @@
 				</form>
 			</div>
 			<div>
-				<form action="server.com" method="get">
+				<form id="engine" action="server.com" method="get">
 					<h4>Двигател</h4>
 					<select class="quick_left" name="engine">
 						<option value="gasoline">Бензинов</option>
@@ -190,7 +226,7 @@
 						<option value="electric">Електрически</option>
 					</select>
 				</form>
-				<form action="server.com" method="get">
+				<form id="gearbox" action="server.com" method="get">
 					<h4>Скоростна кутия</h4>
 					<select class="quick_right" name="gearbox">
 						<option value="manual">Ръчна</option>
@@ -199,6 +235,7 @@
 					</select>
 				</form>
 			</div>
+			<p id="space"></p>
 			<div class="search_line">
 				<br> <a class="full_search" href="search.html"><b>Подробно
 						търсене</b></a>
@@ -209,14 +246,6 @@
 			</div>
 		</div>
 		<div class="main_right">
-			<table>
-				<tr>
-					<th scope="col">Брой обяви</th>
-				</tr>
-				<tr>
-					<td>10</td>
-				</tr>
-			</table>
 			<div class="sign_form">
 				<div id="registrationLoginButons">
 					<button class="button_enter"
@@ -224,7 +253,7 @@
 						style="width: auto;">Вход</button>
 					<div id="login" class="modal">
 
-						<form class="modal-content animate" action="LoginServlet"
+						<form class="modal-content animate" action="http://localhost:8080/DTCars-Web/LoginServlet"
 							method="post">
 							<div class="imgcontainer">
 								<span
@@ -253,7 +282,7 @@
 						style="width: auto;">Регистрация</button>
 
 					<div id="register" class="modal">
-						<form class="modal-content animate" action="RegisterServlet"
+						<form class="modal-content animate" action="http://localhost:8080/DTCars-Web/RegisterServlet"
 							method="post">
 							<div class="imgcontainer">
 								<span
@@ -285,5 +314,28 @@
 
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		function func(elem) {
+			if (elem.value == 'bike') {
+				document.getElementById("bike_type").style.display = "inline-block";
+				document.getElementById("bike_gears").style.display = "inline-block";
+				document.getElementById("space").style.display = "inline-block";
+				document.getElementById("model").style.display = "none";
+				document.getElementById("year").style.display = "none";
+				document.getElementById("engine").style.display = "none";
+				document.getElementById("gearbox").style.display = "none";
+			} else {
+				document.getElementById("bike_type").style.display = "none";
+				document.getElementById("bike_gears").style.display = "none";
+				document.getElementById("space").style.display = "none";
+				document.getElementById("model").style.display = "inline-block";
+				document.getElementById("year").style.display = "inline-block";
+				document.getElementById("engine").style.display = "inline-block";
+				document.getElementById("gearbox").style.display = "inline-block";				
+			}
+		}
+	</script>
+
 </body>
 </html>

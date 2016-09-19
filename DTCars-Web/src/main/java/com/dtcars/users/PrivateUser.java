@@ -6,10 +6,7 @@ import java.util.Set;
 
 import com.dtcars.ads.Ad;
 import com.dtcars.ads.BikeAd;
-import com.dtcars.ads.BusAd;
-import com.dtcars.ads.CarAd;
-import com.dtcars.ads.MotoAd;
-import com.dtcars.ads.TruckAd;
+import com.dtcars.ads.MotorVehicleAd;
 import com.dtcars.exceptions.AdException;
 import com.dtcars.exceptions.InvalidEmailException;
 import com.dtcars.exceptions.InvalidLocationException;
@@ -26,119 +23,48 @@ public class PrivateUser extends User implements IPrivateUser {
 	private String name;
 	private String phoneNumber;
 	private String location;
-	private List<Long> ads;
+	private List<Ad> ads;
 
 	public PrivateUser(String email, String password, String name, String phoneNumber, String location)
-			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, 
-			InvalidPhoneNumberException, InvalidLocationException {
+			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, InvalidPhoneNumberException,
+			InvalidLocationException {
 		super(email, password);
 		changeName(name);
 		changePhoneNumber(phoneNumber);
 		changeLocation(location);
-		this.ads = new ArrayList<Long>();
+		this.ads = new ArrayList<Ad>();
 	}
 	
 	public PrivateUser(int id, String email, String password, String name, String phoneNumber, String location)
-			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, 
-			InvalidPhoneNumberException, InvalidLocationException {
-		super(id, email, password);
+			throws InvalidEmailException, InvalidPasswordException, InvalidNameException, InvalidPhoneNumberException,
+			InvalidLocationException {
+		super(email, password);
+		this.setId(id);
 		changeName(name);
 		changePhoneNumber(phoneNumber);
 		changeLocation(location);
-		this.ads = new ArrayList<Long>();
+		this.ads = new ArrayList<Ad>();
 	}
 
 	@Override
-	public void addNewCarAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category,
-			int mileage) throws AdException {
-		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
-			CarAd ad = new CarAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
-					typeOfEngineByFuel, power, transmission, category, mileage);
-			//Site.addNewAd(ad);
-			this.ads.add(ad.getAdID());
-		} else {
-			throw new AdException("You have reach your ads limit!");
-		}
+	public void renewAd(int id) throws AdException {
+		// Ad ad = Site.getAdByID(id);
+		// if (ad != null) {
+		// ad.update();
+		// }
 	}
 
 	@Override
-	public void addNewBusAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category,
-			int mileage, byte numberOfSeats, int loadKg, byte numberOfAxles) throws AdException {
-		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
-			BusAd ad = new BusAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
-					typeOfEngineByFuel, power, transmission, category, mileage, numberOfSeats, loadKg, numberOfAxles);
-			//Site.addNewAd(ad);
-			this.ads.add(ad.getAdID());
-		} else {
-			throw new AdException("You have reach your ads limit!");
-		}
+	public void editAd(int id, int price, Set<Photo> photos, String additionalInfo) throws AdException {
+		// Site.editAd(id, price, photos, additionalInfo);
 	}
 
 	@Override
-	public void addNewTruckAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
-			String additionalInfo, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission,
-			String category, int mileage, byte numberOfSeats, int loadKg) throws AdException {
-		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
-			TruckAd ad = new TruckAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
-					typeOfEngineByFuel, power, transmission, category, mileage, numberOfSeats, loadKg);
-			//Site.addNewAd(ad);
-			this.ads.add(ad.getAdID());
-		} else {
-			throw new AdException("You have reach your ads limit!");
-		}
-	}
-
-	@Override
-	public void addNewMotoAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
-			String additionalInfo, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission,
-			String category, int mileage, short engineCapacity, String engineType, String coolingType)
-			throws AdException {
-		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
-			MotoAd ad = new MotoAd(price, color, techFeatures, photos, additionalInfo, this.getId(), yearOfManufacture,
-					typeOfEngineByFuel, power, transmission, category, mileage, engineCapacity, engineType,
-					coolingType);
-			//Site.addNewAd(ad);
-			this.ads.add(ad.getAdID());
-		} else {
-			throw new AdException("You have reach your ads limit!");
-		}
-	}
-
-	@Override
-	public void addNewBikeAd(int price, String color, Set<String> techFeatures, Set<Photo> photos,
-			String additionalInfo, String brand, String type, byte sizeInch, String frame, byte numberOfGears)
-			throws AdException {
-		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
-			BikeAd ad = new BikeAd(price, color, techFeatures, photos, additionalInfo, this.getId(), brand, type, sizeInch, frame,
-					numberOfGears);
-			//Site.addNewAd(ad);
-			this.ads.add(ad.getAdID());
-		} else {
-			throw new AdException("You have reach your ads limit!");
-		}
-	}
-
-	@Override
-	public void renewAd(long id) throws AdException {
-//		Ad ad = Site.getAdByID(id);
-//		if (ad != null) {
-//			ad.update();
-//		}
-	}
-
-	@Override
-	public void editAd(long id, int price, Set<Photo> photos, String additionalInfo) throws AdException {
-		//Site.editAd(id, price, photos, additionalInfo);
-	}
-
-	@Override
-	public void deleteAd(long id) {
+	public void deleteAd(int id) {
 		for (int index = 0; index < this.ads.size(); index++) {
-			if (this.ads.get(index) == id) {
+			if (this.ads.get(index).getAdId() == id) {
 				this.ads.remove(index);
-				//Site.deleteAdByID(id);
+				// Site.deleteAdByID(id);
 			}
 		}
 	}
@@ -177,4 +103,33 @@ public class PrivateUser extends User implements IPrivateUser {
 	public String getLocation() {
 		return location;
 	}
+
+	@Override
+	public void addNewMotorVehicleAd(String brand, String model, int price, String color, Set<String> techFeatures,
+			Set<Photo> photos, String additionalInfo, int userID, short yearOfManufacture, String typeOfEngineByFuel,
+			short engineCapacity, short power, String transmission, String category, int mileage) throws AdException {
+		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
+			MotorVehicleAd ad = new MotorVehicleAd(brand, model, price, color, techFeatures, photos, additionalInfo, 
+					userID, yearOfManufacture, typeOfEngineByFuel, engineCapacity, power, transmission, category, mileage);
+			//Site.addNewAd(ad);
+			this.ads.add(ad);
+		} else {
+			throw new AdException("You have reach your ads limit!");
+		}		
+	}
+
+	@Override
+	public void addNewBikeAd(String brand, int price, String color, Set<String> techFeatures, Set<Photo> photos,
+			String additionalInfo, int userID, String type, byte sizeInch, String frame, byte numberOfGears)
+			throws AdException {
+		if (this.ads.size() < MAX_NUMBER_OF_PRIVATE_USER_ADS) {
+			BikeAd ad = new BikeAd(brand, price, color, techFeatures, photos, additionalInfo, userID, type, 
+					sizeInch, frame, numberOfGears);
+			// Site.addNewAd(ad);
+			this.ads.add(ad);
+		} else {
+			throw new AdException("You have reach your ads limit!");
+		}
+	}
+
 }

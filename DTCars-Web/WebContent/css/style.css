@@ -34,7 +34,7 @@ li a {
 	text-decoration: none;
 }
 
-ul a:hover {
+ul a:hover, .selected {
 	background-color: aqua;
 	border-radius: 5px;
 	border: 2px solid maroon;
@@ -84,11 +84,15 @@ hr {
 	padding-bottom: 1.33%;
 }
 
+.dot_logo {
+	color: maroon;
+}
+
 .top-menu li {
 	font-size: 16px;
 }
 
-.quick_search, .search_main {
+.quick_search, .search_main, .publish_main {
 	background-color: #66dded;
 	border: 2px solid maroon;
 	border-radius: 5px;
@@ -96,6 +100,26 @@ hr {
 	margin-right: 10px;
 	width: 47%;
 	display: inline-block;
+}
+
+.publish_main {
+	display: inline-block;
+	border-left: double maroon;
+	width: 54%;
+	padding-left: 1.33%;
+	margin-left: 21.5%;
+	border-right: double maroon;
+	padding-right: 1.33%;
+	margin-right: 21.5%;
+	padding-bottom: 1.33%;
+}
+
+h3 {
+	text-align: center;
+}
+
+.quick_search {
+	height: 479px;
 }
 
 .main-category {
@@ -139,6 +163,10 @@ form {
 	vertical-align: top;
 }
 
+#space {
+	height: 9.5%;
+}
+
 .full_search {
 	color: black;
 	margin-right: 69px;
@@ -167,7 +195,7 @@ table, .sign_form {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	height: 244px;
+	height: 100px;
 	width: 407px;
 	margin-left: 10px;
 	margin-right: auto;
@@ -189,7 +217,6 @@ table td {
 }
 
 .sign_form {
-	margin-top: 10px;
 	width: 405px;
 	vertical-align: middle;
 	text-align: center;
@@ -248,9 +275,32 @@ button:hover, .button:hover {
 	width: 300px;
 }
 
-.search_main_top, .search_main_bottom {
+.search_main_top, .search_main_bottom, .publish_top, .publish_mid_up,
+	.publish_mid_down, .publish_bottom_up, .publish_bottom_down {
 	display: inline-block;
 	text-align: left;
+	margin-left: 4.9%;
+}
+
+.pub_bottom_down {
+	float: right;
+	margin-right: 4.9%;
+}
+
+.publish_main select {
+	width: 150px;
+}
+
+.publish_main input {
+	width: 146px;
+}
+
+.publish_bottom_up input {
+	width: 0;
+}
+
+#proba {
+	width: 100%;
 }
 
 .search_main {
@@ -272,6 +322,10 @@ button:hover, .button:hover {
 
 .search_main_top h4, .search_main_bottom h4 {
 	margin-left: 10px;
+}
+
+#bike_type, #bike_gears, #space, #model_bmw, #model_fiat {
+	display: none;
 }
 
 /* Full-width input fields */
@@ -301,7 +355,7 @@ button:hover, .button:hover {
 }
 
 .sign_form .button_enter, .sign_form .button_reg {
-	margin-top: 25%;
+	margin-top: 7%;
 }
 
 /* Extra styles for the cancel button */

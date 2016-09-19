@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dtcars.repository.JDBCRepository;
+import com.dtcars.users.Admin;
 import com.dtcars.users.PrivateUser;
 import com.dtcars.users.User;
 
@@ -26,29 +28,38 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		 
 		  response.setContentType("text/html");
           request.setCharacterEncoding("UTF-8");
-
+          
+          HttpSession session = request.getSession();
+          
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		if (getUser(email, password) instanceof PrivateUser) {
-			PrivateUser user = (PrivateUser) getUser(email, password);
-
-			request.setAttribute("name", user.getName());
+		System.out.println("Login user");
+		
+		User user = getUser(email, password);
+		
+		if(user != null){
+			session.setAttribute("userId", user.getId());
+		}
+		
+		if (user instanceof PrivateUser) {
+			PrivateUser prUser = (PrivateUser) user;
+		
+			request.setAttribute("user", prUser);
 		} else {
-			request.setAttribute("name", null);
+			
+			Admin admin = (Admin) user;
+			
+			request.setAttribute("user", admin);
 		}
 
-		request.getRequestDispatcher("indexwithlogin.jsp").forward(request, response);
+		request.getRequestDispatcher("/indexwithlogin.jsp").forward(request, response);
 	}
 
 	private User getUser(String email, String password) {
-		for (User user : this.repo.getUsers()) {
-			if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-				return user;
-			}
-		}
-		return null;
+		return this.repo.getUser(email, password);
 	}
 }

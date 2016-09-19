@@ -28,7 +28,10 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
-
+		
+		System.out.println("Register new user");
+		
+		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -38,10 +41,11 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			PrivateUser user = new PrivateUser(email, password, name, phone, location);
 			this.repo.addUser(user);
-			request.setAttribute("name", user.getName());
+			request.setAttribute("user", user);
 		} catch (InvalidEmailException | InvalidPasswordException | InvalidNameException | InvalidPhoneNumberException
 				| InvalidLocationException e) {
-			request.setAttribute("name", null);
+			e.printStackTrace();
+			request.setAttribute("user", null);
 		}finally {
 			request.getRequestDispatcher("indexwithregistration.jsp").forward(request, response);
 		}

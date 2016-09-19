@@ -8,21 +8,15 @@ import com.dtcars.photo.Photo;
 
 public class BikeAd extends Ad {
 
-	private String brand;
 	private String type;
 	private byte sizeInch;
 	private String frame;
 	private byte numberOfGears;
 	
-	public BikeAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			long userID, String brand, String type, byte sizeInch, String frame, byte numberOfGears) 
+	public BikeAd(String brand, int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
+			int userID, String type, byte sizeInch, String frame, byte numberOfGears) 
 			throws AdException {
-		super(price, color, techFeatures, photos, additionalInfo, userID);
-		if (brand != null && !brand.trim().isEmpty()) {
-			this.brand = brand;
-		} else {
-			throw new AdException("Incorrect brand name!");
-		}
+		super(brand, price, color, techFeatures, photos, additionalInfo, userID);
 		this.type = type;
 		if (sizeInch > 0) {
 			this.sizeInch = sizeInch;
@@ -35,6 +29,22 @@ public class BikeAd extends Ad {
 		} else {
 			throw new AdException("Incorrect number of gears!");			
 		}
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public byte getSizeInch() {
+		return sizeInch;
+	}
+
+	public String getFrame() {
+		return frame;
+	}
+
+	public byte getNumberOfGears() {
+		return numberOfGears;
 	}
 	
 }

@@ -8,19 +8,23 @@ import com.dtcars.photo.Photo;
 
 public class MotorVehicleAd extends Ad {
 	
-	private short yearOfManufacture;
+	private String model;
+	private int yearOfManufacture;
 	private String typeOfEngineByFuel;
-	private short power;
+	private int engineCapacity;
+	private int power;
 	private String transmission;
 	private String category;
 	private int mileage;
 	
-	public MotorVehicleAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			long userID, short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, String category, 
+	public MotorVehicleAd(String brand, String model, int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
+			int userID, int yearOfManufacture, String typeOfEngineByFuel, int engineCapacity, int power, String transmission, String category, 
 			int mileage) throws AdException {
-		super(price, color, techFeatures, photos, additionalInfo, userID);
+		super(brand, price, color, techFeatures, photos, additionalInfo, userID);
+		this.model = model;
 		this.yearOfManufacture = yearOfManufacture;
 		this.typeOfEngineByFuel = typeOfEngineByFuel;
+		this.engineCapacity = engineCapacity;
 		if (power > 0) {
 			this.power = power;
 		} else {
@@ -33,6 +37,38 @@ public class MotorVehicleAd extends Ad {
 		} else {
 			throw new AdException("Incorrect mileage!");
 		}
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public int getYearOfManufacture() {
+		return yearOfManufacture;
+	}
+
+	public String getTypeOfEngineByFuel() {
+		return typeOfEngineByFuel;
+	}
+
+	public int getPower() {
+		return power;
+	}
+
+	public String getTransmission() {
+		return transmission;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public int getMileage() {
+		return mileage;
+	}
+
+	public int getEngineCapacity() {
+		return engineCapacity;
 	}
 	
 }

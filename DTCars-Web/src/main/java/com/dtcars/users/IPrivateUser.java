@@ -11,30 +11,18 @@ import com.dtcars.photo.Photo;
 
 public interface IPrivateUser {
 	
-	public void addNewCarAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, 
-			String category, int mileage) throws AdException;
+	public void addNewMotorVehicleAd(String brand, String model, int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
+			int userID, short yearOfManufacture, String typeOfEngineByFuel, short engineCapacity, short power, String transmission, String category, 
+			int mileage) throws AdException;
 	
-	public void addNewBusAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, 
-			String category, int mileage, byte numberOfSeats, int loadKg, byte numberOfAxles) throws AdException;
-	
-	public void addNewTruckAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, 
-			String category, int mileage, byte numberOfSeats, int loadKg) throws AdException;
-	
-	public void addNewMotoAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			short yearOfManufacture, String typeOfEngineByFuel, short power, String transmission, 
-			String category, int mileage, short engineCapacity, String engineType, String coolingType) throws AdException;
-	
-	public void addNewBikeAd(int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
-			String brand, String type, byte sizeInch, String frame, byte numberOfGears) throws AdException;
+	public void addNewBikeAd(String brand, int price, String color, Set<String> techFeatures, Set<Photo> photos, String additionalInfo,
+			int userID, String type, byte sizeInch, String frame, byte numberOfGears) throws AdException;
 		
-	public void renewAd(long id) throws AdException;
+	public void renewAd(int id) throws AdException;
 	
-	public void editAd(long id, int price, Set<Photo> photos, String additionalInfo) throws AdException;
+	public void editAd(int id, int price, Set<Photo> photos, String additionalInfo) throws AdException;
 	
-	public void deleteAd(long id);
+	public void deleteAd(int id);
 	
 	public void changeName(String name) throws InvalidNameException;
 	
